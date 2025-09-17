@@ -491,7 +491,7 @@ td video {
 		max-height: 350px;
 	}
 	td img {
-		max-width: 80vw!important;
+		max-width: 70vw!important;
 	}
 
     /* 2. Define o container como um bloco estático com altura fixa de 50px */
@@ -560,6 +560,7 @@ td video {
 	}
 	
 }
+
 
 
 

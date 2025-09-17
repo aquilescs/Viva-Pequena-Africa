@@ -11,9 +11,8 @@ html, body {
 }
 
 .ol_bwstan {
-    filter: invert(100%) brightness(1.4) grayscale(100%)  opacity(85%);}
-
-
+    filter: invert(100%) brightness(1.4) grayscale(100%)  opacity(85%);
+}
 
 #map {
     width: 100%;

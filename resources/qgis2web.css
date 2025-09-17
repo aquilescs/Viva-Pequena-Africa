@@ -11,8 +11,9 @@ html, body {
 }
 
 .ol_bwstan {
-    filter: invert(100%) brightness(1.4) grayscale(100%)  opacity(85%);
-}
+    filter: invert(100%) brightness(1.4) grayscale(100%)  opacity(85%);}
+
+
 
 #map {
     width: 100%;
@@ -37,7 +38,7 @@ html, body {
 	bottom: 10px;
 	left: 50%;
 	min-width: 250px;
-	max-height: 500px;
+	max-height: 450px;
 	transform: translateX(-50%);
 	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
 	overflow: auto;
@@ -487,13 +488,11 @@ td video {
 
 @media (max-width: 830px) {
     
+
+
 	.ol-popup {
 		max-height: 350px;
 	}
-	td img {
-		max-width: 70vw!important;
-	}
-
     /* 2. Define o container como um bloco estático com altura fixa de 50px */
     #bottom-right-container {
         position: absolute;    /* Tira o elemento do fluxo absoluto */
@@ -513,6 +512,11 @@ td video {
 		border: none;                  /* Remove qualquer borda */
 
     }
+	
+	td img {
+		max-height: 60vh!important;
+		max-width: 70vw!important;
+	}
 
     /* 3. Garante que o conteúdo interno não flutue */
     .bottom-attribution {
@@ -560,8 +564,3 @@ td video {
 	}
 	
 }
-
-
-
-
-

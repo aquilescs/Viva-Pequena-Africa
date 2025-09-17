@@ -40,6 +40,7 @@ html, body {
 	max-height: 500px;
 	transform: translateX(-50%);
 	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	overflow: auto;
 }
 
 .ol-popup:after, .ol-popup:before {
@@ -487,7 +488,9 @@ td video {
 
 @media (max-width: 830px) {
     
-
+	.ol-popup {
+		max-height: 350px;
+	}
 
     /* 2. Define o container como um bloco estático com altura fixa de 50px */
     #bottom-right-container {
@@ -555,4 +558,5 @@ td video {
 	}
 	
 }
+
 

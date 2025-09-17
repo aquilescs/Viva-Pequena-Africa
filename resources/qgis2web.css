@@ -527,10 +527,23 @@ td video {
 	font-size: 10px;	
 	}
 	
-	.logo-container {
-		bottom: 19px;
-		right: -7%;
-	}
+    .logo-container {
+        position: fixed;
+        width: 40%; /* Largura desejada no celular */
+        
+        /* Posicionamento no topo */
+        top: 10px; /* Distância do topo (ajuste conforme necessário) */
+        bottom: auto; /* Reseta a propriedade 'bottom' do estilo base */
+
+        /* Lógica para centralização horizontal */
+        left: 50%; /* Move o início do elemento para o meio da tela */
+        transform: translateX(-50%); /* Puxa o elemento 50% de sua própria largura para a esquerda */
+        right: auto; /* Reseta a propriedade 'right' do estilo base */
+
+        /* Ajustes adicionais (opcional) */
+        z-index: 1000; /* Garante que fique acima de outros elementos */
+        line-height: initial; /* Reseta o line-height para o padrão */
+    }
 	
 	.watermark-container {
 		width: 85%;
@@ -542,3 +555,4 @@ td video {
 	}
 	
 }
+

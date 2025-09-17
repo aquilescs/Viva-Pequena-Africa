@@ -86,7 +86,6 @@ html, body {
     margin-top: 5px;
 	max-height: 70vh;
 	max-width: 70vw;
-	overflow: auto;
 }
 
 #popup-content ul {
@@ -558,5 +557,6 @@ td video {
 	}
 	
 }
+
 
 

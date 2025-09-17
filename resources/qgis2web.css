@@ -169,6 +169,7 @@ td video {
     position: absolute;
     right: 0;
     bottom: 0;
+	z-index: 10;
 }
 
 .top-left-title, .top-left-abstract  {
@@ -427,62 +428,118 @@ td video {
 	list-style: none;
 	font-size: 12px;	
 	}
+
 	
-	/* Container fixo no rodapé */
-		.watermark-container {
-			font-family:"lemonde-courrier", serif;
-			font-weight: 700;
-			font-style: normal;
-			font-size: 1.2em;
-			position: fixed;
-			bottom: -5px;
-			left: -5px;
-			width: 55%;
-			height: 8.5%;
-			display: flex;
-			flex-direction:row;
-			align-items: center;       /*flex-end garante base alinhada */
-			z-index: 0; /* fica por cima do mapa */
-			padding: 3px 0px 6px 6px; /* top right bottom left */
-			background-color: rgba(255, 255, 255, 0.5); /* fundo branco translúcido */
-			border-radius: 8px; /* opcional: cantos arredondados */
-			line-height: 0;
-			transition: opacity 0.3s ease-in-out;
+/* Container fixo no rodapé */
+.watermark-container {
+	font-family:"lemonde-courrier", serif;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 1.2em;
+	position: fixed;
+	bottom: -5px;
+	left: -5px;
+	width: 55%;
+	height: 8.5%;
+	display: flex;
+	flex-direction:row;
+	align-items: center;       /*flex-end garante base alinhada */
+	z-index: 0; /* fica por cima do mapa */
+	padding: 1px 0px 1px 3px; /* top right bottom left */
+	background-color: rgba(255, 255, 255, 0.5); /* fundo branco translúcido */
+	border-radius: 8px; /* opcional: cantos arredondados */
+	line-height: 0;
+	transition: opacity 0.3s ease-in-out;
 
-			}
+	}
+
+
+  /* Imagens lado a lado */
+.watermark-container img {
+	position: static;
+	font-size: 1.2em;
+	width: 98%;	/* impede que fiquem muito altas */
+	object-fit: contain;
+	user-select: none;       /* impede seleção */
+	padding: 0px 0px 0px 5px; /* top right bottom left */
+
+}
+
+.logo-container {
+	position: fixed; /* ou 'fixed' se for fixo na tela */
+	bottom: 12px;
+	right: -8%; /* Posiciona o ponto de início do contêiner no centro */
+	transform: translateX(-50%); /* Move o contêiner para a esquerda em 50% de sua própria largura */
+	width: 15%;
+	height: auto;
+	display: flex;
+	background: transparent; /* sem fundo */
+	line-height: 0;
+}
+	
+.logo-container img {
+	position: static;
+	width: 98%;	/* impede que fiquem muito altas */
+	object-fit: contain;
+	user-select: none;       /* impede seleção */
+	transition: opacity 0.3s ease-in-out;
+	z-index: 0;
+}
+
+@media (max-width: 830px) {
+    
+
+
+    /* 2. Define o container como um bloco estático com altura fixa de 50px */
+    #bottom-right-container {
+        position: absolute;    /* Tira o elemento do fluxo absoluto */
+        width: 100%;
+        height: 18px;        /* Altura fixa para o rodapé */
+        opacity: 100%;
+		bottom: 0px;
+
+        
+        /* Estilos para garantir visibilidade e alinhamento */
+        background-color: #f8f9fa;
+        display: flex; /* Usamos flex aqui para centralizar o conteúdo interno */
+        align-items: center;
+        padding: 0; /* Adiciona espaçamento lateral */
+		z-index: 99; /* fica por cima do mapa */
+        box-shadow: none;              /* Remove qualquer sombra */
+		border: none;                  /* Remove qualquer borda */
+
+    }
+
+    /* 3. Garante que o conteúdo interno não flutue */
+    .bottom-attribution {
+        width: 100%;
+        text-align: center;
+		z-index: 99; /* fica por cima do mapa */
 		
+		/* Reset de estilos visuais para que ele não pareça um container */
+        background-color: transparent; /* Remove o fundo branco */
+        padding: 0;                    /* Remove preenchimento interno */
+        border: none;                  /* Remove qualquer borda */
+        box-shadow: none;              /* Remove qualquer sombra */
 
-		  /* Imagens lado a lado */
-		.watermark-container img {
-			position: static;
-			font-size: 1.2em;
-			width: 98%;	/* impede que fiquem muito altas */
-			object-fit: contain;
-			user-select: none;       /* impede seleção */
-			padding: 0px 0px 0px 5px; /* top right bottom left */
+    }
+	
+	.bottom-attribution > li {
+	font-size: 10px;	
+	}
+	
+	.logo-container {
+		bottom: 19px;
+		right: -7%;
+	}
+	
+	.watermark-container {
+		width: 85%;
+		height: auto;
+		bottom: 12px;
+		padding: 0px 0px 3px 0px;
+		z-index: 10; /* fica por cima do mapa */
 
-		}
-		
-		.logo-container {
-			position: fixed; /* ou 'fixed' se for fixo na tela */
-			bottom: 12px;
-			right: -8%; /* Posiciona o ponto de início do contêiner no centro */
-			transform: translateX(-50%); /* Move o contêiner para a esquerda em 50% de sua própria largura */
-			width: 15%;
-			height: auto;
-			display: flex;
-			background: transparent; /* sem fundo */
-			z-index: 0; /* fica por cima do mapa */
-			gap: 0px; /* espaço entre as imagens */
-			border-radius: 8px; /* opcional: cantos arredondados */
-			line-height: 0;
-			}
-			
-		.logo-container img {
-			position: static;
-			width: 98%;	/* impede que fiquem muito altas */
-			object-fit: contain;
-			user-select: none;       /* impede seleção */
-			transition: opacity 0.3s ease-in-out;
-			z-index: 0;
-		}
+	}
+	
+}

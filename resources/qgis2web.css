@@ -490,6 +490,9 @@ td video {
 	.ol-popup {
 		max-height: 350px;
 	}
+	td img {
+		max-width: 80vw!important;
+	}
 
     /* 2. Define o container como um bloco estático com altura fixa de 50px */
     #bottom-right-container {
@@ -557,6 +560,7 @@ td video {
 	}
 	
 }
+
 
 
 

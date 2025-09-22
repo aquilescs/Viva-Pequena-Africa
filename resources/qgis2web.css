@@ -487,15 +487,30 @@ td video {
 	z-index: 0;
 }
 
+
 @media (max-width: 830px) {
     
 
 
-    /* 2. Define o container como um bloco estático com altura fixa de 50px */
+	.ol-popup {
+		max-height: 350px;
+	}
+	
+	.watermark-container {
+        position: absolute;    /* Tira o elemento do fluxo absoluto */
+		width: 85%;
+		height: auto;
+		bottom: 19px;
+		padding: 0px 0px 3px 0px;
+		z-index: 10; /* fica por cima do mapa */
+
+	}
+	
+    /* 2. Define o container como um bloco estático com altura fixa de 23px */
     #bottom-right-container {
         position: absolute;    /* Tira o elemento do fluxo absoluto */
         width: 100%;
-        height: 18px;        /* Altura fixa para o rodapé */
+        height: 23px;        /* Altura fixa para o rodapé */
         opacity: 100%;
 		bottom: 0px;
 
@@ -510,6 +525,11 @@ td video {
 		border: none;                  /* Remove qualquer borda */
 
     }
+	
+	td img {
+		max-height: 60vh!important;
+		max-width: 70vw!important;
+	}
 
     /* 3. Garante que o conteúdo interno não flutue */
     .bottom-attribution {
@@ -529,19 +549,24 @@ td video {
 	font-size: 10px;	
 	}
 	
-	.logo-container {
-		bottom: 19px;
-		right: -7%;
-	}
-	
-	.watermark-container {
-		width: 85%;
-		height: auto;
-		bottom: 12px;
-		padding: 0px 0px 3px 0px;
-		z-index: 10; /* fica por cima do mapa */
+    .logo-container {
+        position: fixed;
+        width: 40%; /* Largura desejada no celular */
+        
+        /* Posicionamento no topo */
+        top: 10px; /* Distância do topo (ajuste conforme necessário) */
+        bottom: auto; /* Reseta a propriedade 'bottom' do estilo base */
 
-	}
+        /* Lógica para centralização horizontal */
+        left: 50%; /* Move o início do elemento para o meio da tela */
+        transform: translateX(-50%); /* Puxa o elemento 50% de sua própria largura para a esquerda */
+        right: auto; /* Reseta a propriedade 'right' do estilo base */
+
+        /* Ajustes adicionais (opcional) */
+        z-index: 1000; /* Garante que fique acima de outros elementos */
+        line-height: initial; /* Reseta o line-height para o padrão */
+    }
+	
 	
 }
 

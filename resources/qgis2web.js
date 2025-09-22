@@ -1070,11 +1070,11 @@ map.addControl(bottomAttribution);
 
 var attributionList = document.createElement('li');
 attributionList.innerHTML = `
-	Desenvolvido por <a href="https://linktr.ee/quilcss">Aquiles Silva</a>, 2025 © &middot;
-	<a href="https://ceapoficial.org.br/">CEAP</a> &middot;
-	<a href="https://github.com/qgis2web/qgis2web">qgis2web</a> &middot;
-	<a href="https://openlayers.org/">OpenLayers</a> &middot;
-	<a href="https://qgis.org/">QGIS</a>	
+	Desenvolvido por <a target="_blank" rel="noopener noreferrer" href="https://linktr.ee/quilcss">Aquiles Silva</a> © &middot;
+	<a target="_blank" rel="noopener noreferrer" href="https://ceapoficial.org.br/">CEAP</a> - 
+	<a target="_blank" rel="noopener noreferrer" href="https://lp.vivapequenaafrica.com.br/inicio">Projeto Viva Pequena África</a> &middot;
+	<a target="_blank" rel="noopener noreferrer" href="https://openlayers.org/">OpenLayers</a> &middot;
+	<a target="_blank" rel="noopener noreferrer" href="https://qgis.org/">QGIS</a>	
 `;
 
 var bottomAttributionUl = bottomAttribution.element.querySelector('ul');
@@ -1139,4 +1139,5 @@ document.addEventListener('DOMContentLoaded', function() {
     var attributionControl = document.getElementsByClassName('bottom-attribution')[0];
     if (attributionControl) {
         bottomRightContainerDiv.appendChild(attributionControl);
+
     }

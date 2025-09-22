@@ -486,6 +486,7 @@ td video {
 	z-index: 0;
 }
 
+	
 @media (max-width: 830px) {
     
 
@@ -493,11 +494,22 @@ td video {
 	.ol-popup {
 		max-height: 350px;
 	}
+	
+	.watermark-container {
+        position: absolute;    /* Tira o elemento do fluxo absoluto */
+		width: 85%;
+		height: auto;
+		bottom: 19px;
+		padding: 0px 0px 3px 0px;
+		z-index: 10; /* fica por cima do mapa */
+
+	}
+	
     /* 2. Define o container como um bloco estático com altura fixa de 50px */
     #bottom-right-container {
         position: absolute;    /* Tira o elemento do fluxo absoluto */
         width: 100%;
-        height: 18px;        /* Altura fixa para o rodapé */
+        height: 23px;        /* Altura fixa para o rodapé */
         opacity: 100%;
 		bottom: 0px;
 
@@ -554,13 +566,5 @@ td video {
         line-height: initial; /* Reseta o line-height para o padrão */
     }
 	
-	.watermark-container {
-		width: 85%;
-		height: auto;
-		bottom: 12px;
-		padding: 0px 0px 3px 0px;
-		z-index: 10; /* fica por cima do mapa */
-
-	}
 	
 }

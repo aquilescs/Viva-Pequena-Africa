@@ -499,7 +499,7 @@ td video {
         position: absolute;    /* Tira o elemento do fluxo absoluto */
 		width: 85%;
 		height: auto;
-		bottom: 19px;
+		bottom: 22px;
 		padding: 0px 0px 3px 0px;
 		z-index: 10; /* fica por cima do mapa */
 
@@ -509,7 +509,7 @@ td video {
     #bottom-right-container {
         position: absolute;    /* Tira o elemento do fluxo absoluto */
         width: 100%;
-        height: 23px;        /* Altura fixa para o rodapé */
+        height: 26px;        /* Altura fixa para o rodapé */
         opacity: 100%;
 		bottom: 0px;
 
@@ -568,3 +568,4 @@ td video {
 	
 	
 }
+

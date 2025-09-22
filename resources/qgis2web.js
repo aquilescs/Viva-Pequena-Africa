@@ -1074,7 +1074,7 @@ attributionList.innerHTML = `
 	<a target="_blank" rel="noopener noreferrer" href="https://ceapoficial.org.br/">CEAP</a> - 
 	<a target="_blank" rel="noopener noreferrer" href="https://lp.vivapequenaafrica.com.br/inicio">Projeto Viva Pequena África</a> &middot;
 	<a target="_blank" rel="noopener noreferrer" href="https://openlayers.org/">OpenLayers</a> &middot;
-	<a target="_blank" rel="noopener noreferrer" href="https://qgis.org/">QGIS</a>	
+	<a target="_blank" rel="noopener noreferrer" href="https://qgis.org/">QGIS </a>	
 `;
 var bottomAttributionUl = bottomAttribution.element.querySelector('ul');
 if (bottomAttributionUl) {
@@ -1140,3 +1140,4 @@ document.addEventListener('DOMContentLoaded', function() {
         bottomRightContainerDiv.appendChild(attributionControl);
 
     }
+

@@ -1,7 +1,7 @@
 var size = 0;
 var placement = 'point';
 
-var style_APACSAGASLein9711987ebrDecretoMunicipaln73511988_3 = function(feature, resolution){
+var style_CircuitoHistricoeArqueolgicodaPeqfricabrLein8105de20deSetde2018_7 = function(feature, resolution){
     var context = {
         feature: feature,
         variables: {}
@@ -16,12 +16,12 @@ var style_APACSAGASLein9711987ebrDecretoMunicipaln73511988_3 = function(feature,
     var textAlign = "left";
     var offsetX = 0;
     var offsetY = 0;
-    var placement = 'point';
+    var placement = 'line';
     if ("" !== null) {
         labelText = String("");
     }
     var style = [ new ol.style.Style({
-        stroke: new ol.style.Stroke({color: 'rgba(175,255,170,1.0)', lineDash: [9.5,1.9], lineCap: 'butt', lineJoin: 'miter', width: 1.9}),fill: new ol.style.Fill({color: 'rgba(75,125,88,0.0)'}),
+        stroke: new ol.style.Stroke({color: 'rgba(148,209,220,1.0)', lineDash: null, lineCap: 'round', lineJoin: 'round', width: 2.6599999999999997}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement, bufferColor,
                               bufferWidth)

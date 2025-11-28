@@ -4,12 +4,15 @@ var map = new ol.Map({
     renderer: 'canvas',
     layers: layersList,
     view: new ol.View({
-         maxZoom: 19, minZoom: 1
+         maxZoom: 19, minZoom: 3
     })
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([-4810966.168053, -2625028.527263, -4803050.587097, -2617389.867823], map.getSize());
+map.getView().fit([-4811802.290058, -2624833.947947, -4804101.875602, -2617393.009879], map.getSize());
+
+//full zooms only
+map.getView().setProperties({constrainResolution: true});
 
 ////small screen definition
     var hasTouchScreen = map.getViewport().classList.contains('ol-touch');
@@ -63,9 +66,17 @@ var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
 var sketch;
 
+function stopMediaInPopup() {
+    var mediaElements = container.querySelectorAll('audio, video');
+    mediaElements.forEach(function(media) {
+        media.pause();
+        media.currentTime = 0;
+    });
+}
 closer.onclick = function() {
     container.style.display = 'none';
     closer.blur();
+    stopMediaInPopup();
     return false;
 };
 var overlayPopup = new ol.Overlay({
@@ -113,7 +124,7 @@ var featureOverlay = new ol.layer.Vector({
     updateWhileInteracting: true // optional, for instant visual feedback
 });
 
-var doHighlight = false;
+var doHighlight = true;
 var doHover = false;
 
 function createPopupField(currentFeature, currentFeatureKeys, layer) {
@@ -151,7 +162,9 @@ function createPopupField(currentFeature, currentFeatureKeys, layer) {
 					popupField += (fieldValue != null ? '<img src="images/' + fieldValue.replace(/[\\\/:]/g, '_').trim() + '" /></td>' : '');
 				} else if (/\.(mp4|webm|ogg|avi|mov|flv)$/i.test(fieldValue)) {
 					popupField += (fieldValue != null ? '<video controls><source src="images/' + fieldValue.replace(/[\\\/:]/g, '_').trim() + '" type="video/mp4">Il tuo browser non supporta il tag video.</video></td>' : '');
-				} else {
+				} else if (/\.(mp3|wav|ogg|aac|flac)$/i.test(fieldValue)) {
+                    popupField += (fieldValue != null ? '<audio controls><source src="images/' + fieldValue.replace(/[\\\/:]/g, '_').trim() + '" type="audio/mpeg">Il tuo browser non supporta il tag audio.</audio></td>' : '');
+                } else {
 					popupField += (fieldValue != null ? autolinker.link(fieldValue.toLocaleString()) + '</td>' : '');
 				}
 			}
@@ -176,42 +189,53 @@ function onPointerMove(evt) {
     var clusteredFeatures;
     var clusterLength;
     var popupText = '<ul>';
+
+    // Collect all features and their layers at the pixel
+    var featuresAndLayers = [];
     map.forEachFeatureAtPixel(pixel, function(feature, layer) {
-        if (layer && feature instanceof ol.Feature && (layer.get("interactive") || layer.get("interactive") == undefined)) {
-            var doPopup = false;
-            for (k in layer.get('fieldImages')) {
-                if (layer.get('fieldImages')[k] != "Hidden") {
-                    doPopup = true;
-                }
-            }
-            currentFeature = feature;
-            currentLayer = layer;
-            clusteredFeatures = feature.get("features");
-            if (clusteredFeatures) {
-				clusterLength = clusteredFeatures.length;
-			}
-            if (typeof clusteredFeatures !== "undefined") {
-                if (doPopup) {
-                    for(var n=0; n<clusteredFeatures.length; n++) {
-                        currentFeature = clusteredFeatures[n];
-                        currentFeatureKeys = currentFeature.getKeys();
-                        popupText += '<li><table>'
-                        popupText += '<a>' + '<b>' + layer.get('popuplayertitle') + '</b>' + '</a>';
-                        popupText += createPopupField(currentFeature, currentFeatureKeys, layer);
-                        popupText += '</table></li>';    
-                    }
-                }
-            } else {
-                currentFeatureKeys = currentFeature.getKeys();
-                if (doPopup) {
-                    popupText += '<li><table>';
-                    popupText += '<a>' + '<b>' + layer.get('popuplayertitle') + '</b>' + '</a>';
-                    popupText += createPopupField(currentFeature, currentFeatureKeys, layer);
-                    popupText += '</table></li>';
-                }
-            }
+        if (layer && feature instanceof ol.Feature && (layer.get("interactive") || layer.get("interactive") === undefined)) {
+            featuresAndLayers.push({ feature, layer });
         }
     });
+
+    // Iterate over the features and layers in reverse order
+    for (var i = featuresAndLayers.length - 1; i >= 0; i--) {
+        var feature = featuresAndLayers[i].feature;
+        var layer = featuresAndLayers[i].layer;
+        var doPopup = false;
+        for (k in layer.get('fieldImages')) {
+            if (layer.get('fieldImages')[k] != "Hidden") {
+                doPopup = true;
+            }
+        }
+        currentFeature = feature;
+        currentLayer = layer;
+        clusteredFeatures = feature.get("features");
+        if (clusteredFeatures) {
+            clusterLength = clusteredFeatures.length;
+        }
+        if (typeof clusteredFeatures !== "undefined") {
+            if (doPopup) {
+                for(var n=0; n<clusteredFeatures.length; n++) {
+                    currentFeature = clusteredFeatures[n];
+                    currentFeatureKeys = currentFeature.getKeys();
+                    popupText += '<li><table>'
+                    popupText += '<a>' + '<b>' + layer.get('popuplayertitle') + '</b>' + '</a>';
+                    popupText += createPopupField(currentFeature, currentFeatureKeys, layer);
+                    popupText += '</table></li>';    
+                }
+            }
+        } else {
+            currentFeatureKeys = currentFeature.getKeys();
+            if (doPopup) {
+                popupText += '<li><table>';
+                popupText += '<a>' + '<b>' + layer.get('popuplayertitle') + '</b>' + '</a>';
+                popupText += createPopupField(currentFeature, currentFeatureKeys, layer);
+                popupText += '</table></li>';
+            }
+        }
+    }
+
     if (popupText == '<ul>') {
         popupText = '';
     } else {
@@ -301,6 +325,7 @@ function updatePopup() {
     } else {
         container.style.display = 'none';
         closer.blur();
+        stopMediaInPopup();
     }
 } 
 
@@ -380,7 +405,7 @@ function onSingleClickWMS(evt) {
                 });
             if (url) {
                 const wmsTitle = wms_layers[i][0].get('popuplayertitle');
-                var ldsRoller = '<div id="lds-roller"><img class="lds-roller-img" style="height: 25px; width: 25px;"></img></div>';
+                var ldsRoller = '<div class="roller-switcher" style="height: 25px; width: 25px;"></div>';
 
                 popupCoord = coord;
                 popupContent += ldsRoller;
@@ -426,7 +451,7 @@ function onSingleClickWMS(evt) {
                     })
                     .finally(() => {
                         setTimeout(() => {
-                            var loaderIcon = document.querySelector('#lds-roller');
+                            var loaderIcon = document.querySelector('.roller-switcher');
                             if (loaderIcon) loaderIcon.remove();
                         }, 500); // (0.5 second)
                     });
@@ -853,17 +878,18 @@ let measuring = false;
   * @param {ol.geom.Polygon} polygon The polygon.
   * @return {string} Formatted area.
   */
-  var formatArea = function (polygon) {
-    var area = polygon.getArea();
-    var output;
-    if (area > 1000000) {
-    output =
-      Math.round((area / 1000000) * 1000) / 1000 + " " + "km<sup>2</sup>";
-    } else {
-    output = Math.round(area * 100) / 100 + " " + "m<sup>2</sup>";
-    }
-    return output;
-  };
+	var formatArea = function (polygon) {
+		var sourceProj = map.getView().getProjection();
+		var geom = polygon.clone().transform(sourceProj, 'EPSG:3857');
+		var area = Math.abs(ol.sphere.getArea(geom));
+		var output;
+		if (area > 1000000) {
+			output = Math.round((area / 1000000) * 1000) / 1000 + ' ' + 'km<sup>2</sup>';
+		} else {
+			output = Math.round(area * 100) / 100 + ' ' + 'm<sup>2</sup>';
+		}
+		return output.replace('.', ',');
+	};
 
   addInteraction();
 
@@ -1076,7 +1102,6 @@ attributionList.innerHTML = `
 	<a target="_blank" rel="noopener noreferrer" href="https://openlayers.org/">OpenLayers</a> &middot;
 	<a target="_blank" rel="noopener noreferrer" href="https://qgis.org/">QGIS</a>	
 `;
-
 var bottomAttributionUl = bottomAttribution.element.querySelector('ul');
 if (bottomAttributionUl) {
   bottomAttribution.element.insertBefore(attributionList, bottomAttributionUl);
@@ -1139,5 +1164,4 @@ document.addEventListener('DOMContentLoaded', function() {
     var attributionControl = document.getElementsByClassName('bottom-attribution')[0];
     if (attributionControl) {
         bottomRightContainerDiv.appendChild(attributionControl);
-
     }

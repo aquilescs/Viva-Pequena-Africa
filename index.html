@@ -1,29 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt/br">
     <head>
-		
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DH5WBW3H72"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DH5WBW3H72');
-</script>
-
         <meta charset="utf-8">
+		<!-- Google tag (gtag.js) --> 
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-DH5WBW3H72"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-DH5WBW3H72'); </script> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="./resources/ol.css">
 		<link rel="stylesheet" href="https://use.typekit.net/vfe1osu.css">
+        <link rel="stylesheet" href="./resources/ol.css">
         <link rel="stylesheet" href="resources/fontawesome-all.min.css">
         <link href="resources/photon-geocoder-autocomplete.min.css" rel="stylesheet">
         <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
         <link rel="stylesheet" href="./resources/qgis2web.css">
-        <style>
+		<style>
         html, body {
             background-color: #ffffff;
         }
@@ -45,42 +36,6 @@
             background-color: rgba(255,255,255,.4) !important;
             padding: 2px !important;
         } 
-        /* Container fixo no rodapé */
-		.watermark-container {
-			font-family:"lemonde-courrier", serif;
-			font-weight: 700;
-			font-style: normal;
-			font-size: 1.2em;
-			font-color: white;
-			position: fixed;
-			bottom: -5px;
-			left: -5px;
-			width: 65%;
-			height: 8%;
-			display: flex;
-			flex-direction:row;
-			align-items: center;       /*flex-end garante base alinhada */
-			background: transparent; /* sem fundo */
-			pointer-events: none; /* impede interação com as imagens */
-			z-index: 999; /* fica por cima do mapa */
-			padding: 2px 0px 8px 6px; /* top right bottom left */
-			gap: 0px; /* espaço entre as imagens */
-			background-color: rgba(255, 255, 255, 0.5); /* fundo branco translúcido */
-			border-radius: 8px; /* opcional: cantos arredondados */
-			line-height: 0;
-			}
-		
-
-		  /* Imagens lado a lado */
-		.watermark-container img {
-			position: static;
-			font-size: 1.2em;
-			width: 98%;	/* impede que fiquem muito altas */
-			object-fit: contain;
-			user-select: none;       /* impede seleção */
-			pointer-events: none;    /* impede clique */
-		}
-
         </style>
 
         <style>
@@ -91,7 +46,7 @@
             margin: 0;
         }
         </style>
-        <title></title>
+        <title>Mapeamento Patrimonial Viva Pequena África</title>
     </head>
     <body>
         <div id="map">
@@ -103,21 +58,60 @@
 		<!-- IMAGENS RODAPÉ -->
 		<div class="watermark-container" style="font-color:rgba(255, 255, 255)">
 		<!-- APOIO --> 
-		  <img src="logos/Barra.png" alt="APOIO: " style="padding-left: 1%">
+		  <img id="logos-imagem" src="logos/Barra de Logos_Horizontal.png" alt="" style="pointer-events: none;">
 		</div>
+		<!-- LOGO DO PROJETO -->
+		<div class="logo-container" style="font-color:rgba(255, 255, 255)">
+		<!-- Logo  --> 
+		  <img id="projeto-imagem" src="logos/Logotipo_Amarelo.png" alt="1" style="pointer-events: none;" href="https://lp.vivapequenaafrica.com.br/inicio">
+		</div>
+		
+		<script>
+		// Obtém o elemento pai (o contêiner)
+		const ProjContainer = document.querySelector('.logo-container');
+		const logoContainer = document.querySelector('.watermark-container');
 
+		// Obtém o elemento da imagem dentro do contêiner
+		const projetoimagem = document.getElementById('projeto-imagem');
+		const logoimagem = document.getElementById('logos-imagem');
+
+		// Adiciona um 'ouvinte de evento' ao contêiner
+		ProjContainer.addEventListener('mouseover', function() {
+			projetoimagem.style.opacity = '0.2'; 
+		});
+
+		// Adiciona um 'ouvintelo de evento' ao contêiner
+		ProjContainer.addEventListener('mouseout', function() {
+			projetoimagem.style.opacity = '0.8'; 
+		});
+
+		ProjContainer.addEventListener('click', function() {
+        window.location.href = 'https://lp.vivapequenaafrica.com.br/inicio';
+		});
+		
+		const waterContainer = document.querySelector('.watermark-container');
+
+		// Adiciona um 'ouvinte de evento' ao contêiner
+		waterContainer.addEventListener('mouseover', function() {
+			logoContainer.style.opacity = '0.2'; 
+		});
+
+		// Adiciona um 'ouvinte de evento' ao contêiner
+		waterContainer.addEventListener('mouseout', function() {
+			logoContainer.style.opacity = '1'; 
+		});
+		
+		</script>
+		
         <script src="resources/qgis2web_expressions.js"></script>
         <script src="./resources/functions.js"></script>
         <script src="./resources/ol.js"></script>
         <script src="./resources/ol-layerswitcher.js"></script>
         <script src="resources/photon-geocoder-autocomplete.min.js"></script>
-        <script src="layers/PolgonodaPequenafricabrProjetoVIVAPequenafrica_2.js"></script><script src="layers/APACSAGASLein9711987ebrDecretoMunicipaln73511988_3.js"></script><script src="layers/ZonadeamortecimentodoCaisdoValongo_4.js"></script><script src="layers/CircuitoHistricoeArqueolgicodaPequenafricabrLein8105de20deSetde2018_5.js"></script><script src="layers/CircuitoHistricoeArqueolgicodaPeqfricabrLein8105de20deSetde2018_6.js"></script><script src="layers/CircuitodeHeranaeMemriaAfricanabrDecreton34803de29deNovde2011_7.js"></script><script src="layers/bSitiosarqueolgicosb_8.js"></script><script src="layers/OrganizaesCarnavalescas_9.js"></script><script src="layers/Organizaes_10.js"></script><script src="layers/Monumentos_11.js"></script><script src="layers/Locais_12.js"></script><script src="layers/Espaosdesociabilidadeecultura_13.js"></script><script src="layers/Outrospatrimniosimateriais_14.js"></script><script src="layers/RodasculturaisdeHipHopbreasbatalhasderima_15.js"></script><script src="layers/RodasdeCapoeiraeofciobrdosmestresdeCapoeira_16.js"></script><script src="layers/ReligioesdematrizeinflunciaAfricana_17.js"></script><script src="layers/MatrizesdoSambadoRiodeJaneiro_18.js"></script><script src="layers/bPatrimniosMateriaisb_19.js"></script>
-        <script src="styles/PolgonodaPequenafricabrProjetoVIVAPequenafrica_2_style.js"></script><script src="styles/APACSAGASLein9711987ebrDecretoMunicipaln73511988_3_style.js"></script><script src="styles/ZonadeamortecimentodoCaisdoValongo_4_style.js"></script><script src="styles/CircuitoHistricoeArqueolgicodaPequenafricabrLein8105de20deSetde2018_5_style.js"></script><script src="styles/CircuitoHistricoeArqueolgicodaPeqfricabrLein8105de20deSetde2018_6_style.js"></script><script src="styles/CircuitodeHeranaeMemriaAfricanabrDecreton34803de29deNovde2011_7_style.js"></script><script src="styles/bSitiosarqueolgicosb_8_style.js"></script><script src="styles/OrganizaesCarnavalescas_9_style.js"></script><script src="styles/Organizaes_10_style.js"></script><script src="styles/Monumentos_11_style.js"></script><script src="styles/Locais_12_style.js"></script><script src="styles/Espaosdesociabilidadeecultura_13_style.js"></script><script src="styles/Outrospatrimniosimateriais_14_style.js"></script><script src="styles/RodasculturaisdeHipHopbreasbatalhasderima_15_style.js"></script><script src="styles/RodasdeCapoeiraeofciobrdosmestresdeCapoeira_16_style.js"></script><script src="styles/ReligioesdematrizeinflunciaAfricana_17_style.js"></script><script src="styles/MatrizesdoSambadoRiodeJaneiro_18_style.js"></script><script src="styles/bPatrimniosMateriaisb_19_style.js"></script>
+        <script src="layers/DelimitaodaPequenafricabrProjetoVIVAPequenafrica_2.js"></script><script src="layers/APACSAGASLein9711987ebrDecretoMunicipaln73511988_3.js"></script><script src="layers/MapeamentodoMinistrioPblicoFederalbrRelatriode8demarode2022_4.js"></script><script src="layers/LeiMunicipaln66132019_5.js"></script><script src="layers/ZonadeamortecimentodoCaisdoValongo_6.js"></script><script src="layers/CircuitoHistricoeArqueolgicodaPeqfricabrLein8105de20deSetde2018_7.js"></script><script src="layers/CircuitoHistricoeArqueolgicodaPeqfricabrLein8105de20deSetde2018_8.js"></script><script src="layers/CircuitodeHeranaeMemriaAfricanabrDecreton34803de29deNovde2011_9.js"></script><script src="layers/Stiosarqueolgicos_10.js"></script><script src="layers/Outrospatrimniosimateriais_11.js"></script><script src="layers/RodasculturaisdeHipHopbreasbatalhasderima_12.js"></script><script src="layers/RodasdeCapoeiraeofciobrdosmestresdeCapoeira_13.js"></script><script src="layers/ReligioesdematrizeinflunciaAfricana_14.js"></script><script src="layers/MatrizesdoSambadoRiodeJaneiro_15.js"></script><script src="layers/Organizaescarnavalescas_16.js"></script><script src="layers/Organizaes_17.js"></script><script src="layers/Monumentos_18.js"></script><script src="layers/Locais_19.js"></script><script src="layers/Espaosdesociabilidadeecultura_20.js"></script><script src="layers/bPatrimniosMateriaisb_21.js"></script><script src="layers/ParticipantesdaIniciativaPequenafrica_22.js"></script>
+        <script src="styles/DelimitaodaPequenafricabrProjetoVIVAPequenafrica_2_style.js"></script><script src="styles/APACSAGASLein9711987ebrDecretoMunicipaln73511988_3_style.js"></script><script src="styles/MapeamentodoMinistrioPblicoFederalbrRelatriode8demarode2022_4_style.js"></script><script src="styles/LeiMunicipaln66132019_5_style.js"></script><script src="styles/ZonadeamortecimentodoCaisdoValongo_6_style.js"></script><script src="styles/CircuitoHistricoeArqueolgicodaPeqfricabrLein8105de20deSetde2018_7_style.js"></script><script src="styles/CircuitoHistricoeArqueolgicodaPeqfricabrLein8105de20deSetde2018_8_style.js"></script><script src="styles/CircuitodeHeranaeMemriaAfricanabrDecreton34803de29deNovde2011_9_style.js"></script><script src="styles/Stiosarqueolgicos_10_style.js"></script><script src="styles/Outrospatrimniosimateriais_11_style.js"></script><script src="styles/RodasculturaisdeHipHopbreasbatalhasderima_12_style.js"></script><script src="styles/RodasdeCapoeiraeofciobrdosmestresdeCapoeira_13_style.js"></script><script src="styles/ReligioesdematrizeinflunciaAfricana_14_style.js"></script><script src="styles/MatrizesdoSambadoRiodeJaneiro_15_style.js"></script><script src="styles/Organizaescarnavalescas_16_style.js"></script><script src="styles/Organizaes_17_style.js"></script><script src="styles/Monumentos_18_style.js"></script><script src="styles/Locais_19_style.js"></script><script src="styles/Espaosdesociabilidadeecultura_20_style.js"></script><script src="styles/bPatrimniosMateriaisb_21_style.js"></script><script src="styles/ParticipantesdaIniciativaPequenafrica_22_style.js"></script>
         <script src="./layers/layers.js" type="text/javascript"></script> 
         <script src="./resources/Autolinker.min.js"></script>
-        <script src="./resources/qgis2web.js"></script>
+        <script src="./resources/qgis2web.js"></script>        
     </body>
 </html>
-
-
-

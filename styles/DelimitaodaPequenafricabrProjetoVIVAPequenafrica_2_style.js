@@ -1,7 +1,7 @@
 var size = 0;
 var placement = 'point';
 
-var style_APACSAGASLein9711987ebrDecretoMunicipaln73511988_3 = function(feature, resolution){
+var style_DelimitaodaPequenafricabrProjetoVIVAPequenafrica_2 = function(feature, resolution){
     var context = {
         feature: feature,
         variables: {}
@@ -21,7 +21,7 @@ var style_APACSAGASLein9711987ebrDecretoMunicipaln73511988_3 = function(feature,
         labelText = String("");
     }
     var style = [ new ol.style.Style({
-        stroke: new ol.style.Stroke({color: 'rgba(175,255,170,1.0)', lineDash: [9.5,1.9], lineCap: 'butt', lineJoin: 'miter', width: 1.9}),fill: new ol.style.Fill({color: 'rgba(75,125,88,0.0)'}),
+        stroke: new ol.style.Stroke({color: 'rgba(255,230,126,1.0)', lineDash: [9.5,1.9], lineCap: 'butt', lineJoin: 'miter', width: 1.9}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement, bufferColor,
                               bufferWidth)

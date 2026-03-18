@@ -21,7 +21,7 @@ var style_APACSAGASLein9711987ebrDecretoMunicipaln73511988_3 = function(feature,
         labelText = String("");
     }
     var style = [ new ol.style.Style({
-        stroke: new ol.style.Stroke({color: 'rgba(175,255,170,1.0)', lineDash: [15.2,3.04], lineCap: 'butt', lineJoin: 'miter', width: 3.04}),fill: new ol.style.Fill({color: 'rgba(75,125,88,0.0)'}),
+        stroke: new ol.style.Stroke({color: 'rgba(175,255,170,1.0)', lineDash: [9.5,1.9], lineCap: 'butt', lineJoin: 'miter', width: 1.9}),fill: new ol.style.Fill({color: 'rgba(75,125,88,0.0)'}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement, bufferColor,
                               bufferWidth)

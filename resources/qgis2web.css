@@ -11,7 +11,7 @@ html, body {
 }
 
 .ol_bwstan {
-    filter: invert(100%) brightness(1.4) grayscale(100%)  opacity(85%);}
+    filter: invert(100%) brightness(1.4) grayscale(100%)  opacity(85%) ;}
 
 
 
@@ -38,9 +38,10 @@ html, body {
 	bottom: 10px;
 	left: 50%;
 	min-width: 250px;
-	max-height: 500px;
+	max-height: 450px;
 	transform: translateX(-50%);
 	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	overflow: auto;
 }
 
 .ol-popup:after, .ol-popup:before {
@@ -86,7 +87,6 @@ html, body {
     margin-top: 5px;
 	max-height: 70vh;
 	max-width: 70vw;
-	overflow: auto;
 }
 
 #popup-content ul {
@@ -170,7 +170,6 @@ td video {
     right: 0;
     bottom: 0;
 	z-index: 10;
-
 }
 
 .top-left-title, .top-left-abstract  {
@@ -440,14 +439,14 @@ td video {
 	position: fixed;
 	bottom: -5px;
 	left: -5px;
-	width: 55%;
-	height: 8.5%;
+	width: 30%;
+	height: 19%;
 	display: flex;
 	flex-direction:row;
 	align-items: center;       /*flex-end garante base alinhada */
 	z-index: 0; /* fica por cima do mapa */
 	padding: 1px 0px 1px 3px; /* top right bottom left */
-	background-color: rgba(255, 255, 255, 0.5); /* fundo branco translúcido */
+	background-color: rgba(255, 255, 255, 0.7); /* fundo branco translúcido */
 	border-radius: 8px; /* opcional: cantos arredondados */
 	line-height: 0;
 	transition: opacity 0.3s ease-in-out;
@@ -459,19 +458,19 @@ td video {
 .watermark-container img {
 	position: static;
 	font-size: 1.2em;
-	width: 98%;	/* impede que fiquem muito altas */
+	width: 100%;	/* impede que fiquem muito altas */
 	object-fit: contain;
 	user-select: none;       /* impede seleção */
-	padding: 0px 0px 0px 5px; /* top right bottom left */
+	padding: 0px 0px 0px 0px; /* top right bottom left */
 
 }
 
 .logo-container {
 	position: fixed; /* ou 'fixed' se for fixo na tela */
-	bottom: 12px;
-	right: -8%; /* Posiciona o ponto de início do contêiner no centro */
+	bottom: 4px;
+	right: -5%; /* Posiciona o ponto de início do contêiner no centro */
 	transform: translateX(-50%); /* Move o contêiner para a esquerda em 50% de sua própria largura */
-	width: 15%;
+	width: 10%;
 	height: auto;
 	display: flex;
 	background: transparent; /* sem fundo */
@@ -487,26 +486,40 @@ td video {
 	z-index: 0;
 }
 
+/*
+	OLD
 
+    .logo-vertical {
+        display: none;
+    }
+*/
 @media (max-width: 830px) {
-    
+/*
+	OLD
+	.logo-horizontal {
+        display: none;
+    }
 
-
+    .logo-vertical {
+        display: block;
+    }
+	
+*/
 	.ol-popup {
 		max-height: 350px;
 	}
 	
 	.watermark-container {
         position: absolute;    /* Tira o elemento do fluxo absoluto */
-		width: 85%;
+		width: 70%;
 		height: auto;
 		bottom: 19px;
 		padding: 0px 0px 3px 0px;
-		z-index: 10; /* fica por cima do mapa */
+		z-index: 0; /* fica por cima do mapa */
 
 	}
 	
-    /* 2. Define o container como um bloco estático com altura fixa de 23px */
+    /* 2. Define o container como um bloco estático com altura fixa de 50px */
     #bottom-right-container {
         position: absolute;    /* Tira o elemento do fluxo absoluto */
         width: 100%;
@@ -547,20 +560,18 @@ td video {
 	
 	.bottom-attribution > li {
 	font-size: 10px;	
+	z-index: 99;
 	}
 	
     .logo-container {
         position: fixed;
-        width: 40%; /* Largura desejada no celular */
+        width: 30%; /* Largura desejada no celular */
         
         /* Posicionamento no topo */
-        top: 10px; /* Distância do topo (ajuste conforme necessário) */
-        bottom: auto; /* Reseta a propriedade 'bottom' do estilo base */
+		bottom: 8px;
 
         /* Lógica para centralização horizontal */
-        left: 50%; /* Move o início do elemento para o meio da tela */
-        transform: translateX(-50%); /* Puxa o elemento 50% de sua própria largura para a esquerda */
-        right: auto; /* Reseta a propriedade 'right' do estilo base */
+        right: -15%; /* Move o início do elemento para o meio da tela */
 
         /* Ajustes adicionais (opcional) */
         z-index: 1000; /* Garante que fique acima de outros elementos */
@@ -569,4 +580,3 @@ td video {
 	
 	
 }
-

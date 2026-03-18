@@ -486,9 +486,23 @@ td video {
 	z-index: 0;
 }
 
+.logo-horizontal {
+        display: block;
+    }
+
+    .logo-vertical {
+        display: none;
+    }
+
 @media (max-width: 830px) {
     
+	.logo-horizontal {
+        display: none;
+    }
 
+    .logo-vertical {
+        display: block;
+    }
 
 	.ol-popup {
 		max-height: 350px;

@@ -486,12 +486,16 @@ td video {
 	z-index: 0;
 }
 
+/*
+	OLD
+
     .logo-vertical {
         display: none;
     }
-
+*/
 @media (max-width: 830px) {
-    
+/*
+	OLD
 	.logo-horizontal {
         display: none;
     }
@@ -499,7 +503,8 @@ td video {
     .logo-vertical {
         display: block;
     }
-
+	
+*/
 	.ol-popup {
 		max-height: 350px;
 	}
